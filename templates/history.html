@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inception</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/f79dc7947f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'movie/style_history.css' %}">
+</head>
+<body>
+  <div class="navbar">
+    <div id = "logo"><i class="fas fa-film"></i>  MoviReco</div>
+    <a href="{% url "HomePage" %}">Home</a>
+    <div class="dropdown">
+        <button class="dropbtn">Account</button>
+        <div class="dropdown-content">
+            <a href="{% url "Setting" %}">Settings</a>
+            <a href="">Sign Out</a>
+        </div>
+    </div>
+    <div id = search>
+        <div id = input_box>
+            <i class="fas fa-search"></i>
+            <input id="searchBox" type="text" placeholder="Enter movie or actor name">
+        </div>
+        <form  action="{% url "recommendations" %}" id="result"></form>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script type="text/javascript" src="{% static 'movie/JS/searcheng.js' %}"></script>
+    </div>
+</div>
+    <div id = "blank"></div>
+    <div id = "heading">Watch History</div>
+    <section id="movies"></section>
+</body>
+<script>
+    var movies1 = {{ movies|safe|default:"[]" }};
+
+    var text1 = '<form action="{% url "recommendations2" %}">';
+
+      for (let i = 0; i < movies1.length; i++) {
+          var srno= i+1;
+          text1 += '<button class = "HistEntry" name = "movie" type = "submit" value ="'+movies1[i][0]+'">';
+          text1 += '<div class = "HistSRNo">'+srno+'</div>';
+          text1 += '<div class = "HistMovieName">'+movies1[i][0]+'</div>';
+          text1 += '<div class = "HistYearRating">Year: '+movies1[i][2]+'<br>Rating: '+movies1[i][1]+'/10</div>';
+          text1 += '</button>';
+    }
+    text1 +="</form>";
+
+    document.getElementById("movies").innerHTML = text1;
+
+</script>
+</html>
+
+

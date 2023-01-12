@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/f79dc7947f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'movie/style_home.css' %}"> 
+</head>
+<body>
+    <div class="navbar">
+        <a href="{% url 'HomePage' %}">Home</a>
+        <div class="dropdown">
+            <button class="dropbtn">Account</button>
+            <div class="dropdown-content">
+                <a href="{% url 'Setting' %}">Settings</a>
+                <a href="">Sign Out</a>
+            </div>
+        </div>
+        <div id = "search" class="search-box view_nav">
+            <div id = "input_box">
+                <button class="btn-search"><i class="fas fa-search"></i></button>
+                <input type="text" id="searchBox" placeholder="Enter movie or actor name" class="input-search" placeholder="Enter movie or actor name">              
+            </div>
+        <!--
+            <div id = search>
+            <div id = input_box>
+                <i class="fas fa-search"></i>
+                <input id="searchBox" type="text" placeholder="Enter movie or actor name">
+            </div>
+        -->
+            <form  action="{% url 'recommendations' %}" id="result"></form>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+            <script type="text/javascript" src="{% static 'movie/JS/searcheng.js' %}"></script>
+        </div>
+    </div>
+<h4><i><u>Your Rating *</u></i></h4>
+<form action="{% url 'ld1' %}">
+    <input type="hidden" name="q" value="{{ movie }}">
+<select id="rating" name="rating" size="10" required>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+    <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+    <option value="9">9</option>
+  <option value="10">10</option>
+</select>
+    <input type="text" name="review" width="3000" height="3000">
+    <input type="submit">
+</form>
+<p>{{ Like }}</p>
+<form action="{% url 'recommendations' %}" >
+    <input type="hidden" name="q" value="{{ movie }}">
+    <input type="submit" value="Go Back">
+</form>
+
+<div id = "others"></div>
+</body>
+<script>
+  var reviews = {{ Reviews|safe|default:"[]" }};
+  var text = "";
+  for(let i = 0;i<reviews.length;i++){
+    text += '<div class = "review">';
+    text += '<div class = "rating">'+reviews[i][0]+'</div>';
+    text += '<div class = "rev_text">'+reviews[i][1]+'</div>';
+    text += '</div>'
+     
+  }
+
+  document.getElementById("others").innerHTML = text;
+</script>
+</html>

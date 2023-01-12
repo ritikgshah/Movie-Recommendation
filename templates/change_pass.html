@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoviReco</title>
+    <script src="https://kit.fontawesome.com/f79dc7947f.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'movie/style_changePass.css' %}">
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'movie/favicon.ico' %}"/> 
+
+</head>
+
+<body>
+    <div id = "logo"><i class="fas fa-film"></i>   MovieReco</div>
+    <div class="bodycontent">
+        <main class="form-signin">
+            <!-- {{ invalid }} -->
+        <form id="sign" action="{% url 'changePass' %}">
+            <h1>Change Password</h1>
+
+            <div class = "data_input">
+                <i style="color: #404040;" class="fas fa-key"></i>
+                <input type="password" name="old_pass" id="inputEmail" placeholder="Old Password" required>
+            </div>
+            <br>
+                <div class = "data_input">
+                    <i class="fas fa-key"></i>
+                    <input type="password" name="new_pass" id="inputPassword" class="form-control" placeholder="New Password" required>
+                </div>
+
+                <br>
+                <div id="showpassword">
+                    <input type="checkbox" onclick="Toggle()">
+                    Show Password
+                </div>
+            <br>
+            <br>
+            <input type="submit" value="Submit" class="submit" id="submit-button" type="submit">
+            <br>
+            <p style="color:whitesmoke">{{ check }}</p>
+        </form>
+
+    </main>
+    <script>
+
+        function Toggle() {
+            var temp = document.getElementById("inputPassword");
+            if (temp.type === "password") {
+                temp.type = "text";
+            }
+            else {
+                temp.type = "password";
+            }
+        }
+
+        var modal = document.getElementById("mymodal");
+        var btn = document.getElementById("signup");
+        var span = document.getElementsByClassName("close")[0];
+        btn.onclick = function() {
+            modal.style.display="block";
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if(event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</div>
+</body>
+</html>

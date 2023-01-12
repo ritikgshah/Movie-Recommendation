@@ -1,0 +1,866 @@
+html{
+    --text-color: #808080;
+    --bg-color:#000000;
+    --dark-color: #000000;
+    --light-color:#808080;
+}
+body{
+    background-color: #000000;
+}
+/*-----navigation bar start-----*/
+.navbar{
+    position: absolute;
+    width: 100%;
+}
+.navbar-mobile{
+    position: absolute;
+    width: 100%;
+}
+.navbar a {
+    float: left;
+    color: var(--text-color);
+    text-align: center;
+    font-size: 25px;
+    font-family: 'Oswald', sans-serif;
+    margin-top: 20px;
+    margin-right: 5px;
+    margin-left: 40px;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 10px;
+}
+.navbar a:hover{
+    color: var(--bg-color);
+    background-color: var(--text-color);
+}
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+.dropdown .dropbtn {
+    border: none;
+    outline: none;
+    color: var(--text-color);
+    font-size: 25px;
+    font-family: 'Oswald', sans-serif;
+    padding-top: 25px;
+    margin-right: 20px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    background-color: inherit;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--text-color);
+    z-index: 1;
+    border-radius: 10px;
+}
+.dropdown-content a {
+    float: none;
+    color: var(--bg-color);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    margin: 3px;
+    font-size: 15px;
+    font-family: 'Roboto', sans-serif;
+}
+.dropdown-content a:hover {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border-radius: 7px;
+}
+.dropdown:hover .dropdown-content {display: block;}
+/*-----Navigation Bar end-----*/
+/*-----search engine start-----*/
+#search{
+    float: right;
+    margin-right: 15px;
+    margin-top: 25px;
+}
+#input_box{
+    background-color: var(--light-color);
+    color: var(--dark-color);
+    font-size: 15px;
+    padding-left: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-right: 30px;
+}
+#searchBox {
+    width: 315px;
+    height: 32px;
+    border-radius: 10px;
+    padding-left: 20px;
+    border: none;
+    outline: none;
+    color: var(--dark-color);
+    font-size: 15px;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--light-color);
+}
+#result {
+    position: inherit;
+    background-color: var(--light-color);
+    z-index: 1;
+    border-radius: 10px;
+    width: 366px;
+}
+#result button {
+    background-color: inherit;
+    float: none;
+    color: var(--dark-color);
+    padding: 8px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    border: 3px var(--light-color) solid;
+    font-size: 15px;
+    font-family: 'Roboto', sans-serif;
+    width: 365px;
+    border-radius: 10px;
+    margin:0px
+}
+#result button:hover {
+    background-color: var(--dark-color);
+    color: var(--light-color);
+}
+::placeholder {
+    color: var(--dark-color);
+    opacity: 1;
+    }
+:-ms-input-placeholder,::-ms-input-placeholder{color: var(--dark-color);}
+/*------Search engine end-----*/    
+body{ 
+    margin: 0;
+    background-color: var(--bg-color);
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+    grid-template-rows: 573px auto auto auto auto auto;
+    margin: 0px;
+}
+.grid-container > div { padding: 0px;}
+#blank{
+    grid-area: 9 / 1 / span 1 / span 10;
+    background-color: var(--bg-color);
+}
+#logo{
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-size: 35px;
+    font-family: 'Oswald', sans-serif;
+    padding-top: 15px;
+    padding-left: 30px;
+    float: left;
+    font-weight: bold;
+}
+#HomeImg{
+    grid-area: 1 / 1 / span 1 / span 10;
+    background:url(test_img1.jpg);
+}
+#Text{
+    background-color: rgba(0, 0, 0, 0.75);
+    height: 573px;
+}
+#WebsiteName{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 100px;
+    color: var(--text-color);
+    padding-left: 50px;
+    padding-top: 200px;
+    padding-bottom: 0px;
+    font-weight: bold;
+}
+#WebsiteDesc{
+    margin-top: 0px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 35px;
+    color: var(--text-color);
+    padding-left: 50px;
+    padding-top: 0px;
+}
+#Rec_heading_1 { 
+    grid-area: 2 / 1 / span 1 / span 10;
+    color: var(--text-color);
+    padding-top: 30px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 30px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+#movies1{grid-area: 3 / 1 / span 1/ span 10;}
+#Rec_heading_2 { 
+    grid-area: 4 / 1 / span 1 / span 10;
+    color: var(--text-color);
+    padding-top: 20px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 30px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+#movies2{grid-area: 5 / 1 / span 1/ span 10;}
+#Rec_heading_3 { 
+    grid-area: 6 / 1 / span 1 / span 10;
+    color: var(--text-color);
+    padding-top: 20px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 30px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+#movies3{grid-area: 7 / 1 / span 1/ span 10;}
+#Rec_heading_4 { 
+    grid-area: 8 / 1 / span 1 / span 10;
+    color: var(--text-color);
+    padding-top: 20px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 30px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+#movies4{grid-area: 10 / 1 / span 1/ span 10;}
+
+#Rec0{ grid-area: 1 / 1 / span 1 / span 1;}
+#Rec1{ grid-area: 1 / 2 / span 1 / span 1;}
+#Rec2{ grid-area: 1 / 3 / span 1 / span 1;}
+#Rec3{ grid-area: 1 / 4 / span 1 / span 1;}
+#Rec4{ grid-area: 1 / 5 / span 1 / span 1;}
+#Rec5{ grid-area: 1 / 6 / span 1 / span 1;}
+#Rec6{ grid-area: 1 / 7 / span 1 / span 1;}
+#Rec7{ grid-area: 1 / 8 / span 1 / span 1;}
+#Rec8{ grid-area: 1 / 9 / span 1 / span 1;}
+#Rec9{ grid-area: 1 / 10 / span 1 / span 1;}
+#bg{ width: 100%;}
+
+.elemHeader{
+    font-family: 'Oswald', sans-serif;
+    margin-left: 20px;
+    font-size: 2em;
+    font-weight: bold;
+}
+.elemContent{
+    margin-left: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+#Rec_form{
+    display: grid;
+    grid-template-columns: 9.8vw 9.8vw 9.8vw 9.8vw 9.8vw 9.8vw 9.8vw 9.8vw 9.8vw 9.8vw;
+    grid-template-rows: 16vw;
+    margin-left: 0.5vw;
+}
+#Rec_form button{
+    background-color: inherit;
+    text-align: center;
+    color: var(--text-color);
+    border: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    position: relative;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    border-radius: calc(10px + 0.4vw);
+}
+.movieName{
+    margin-top: 10vw;
+}
+#Rec_form button:hover{
+    background-color: var(--text-color);
+    color: var(--bg-color);
+}
+#Rec_form button img{
+    position: absolute;
+    top:0.4vw;
+    left: 0.4vw;
+    height: 12vw;
+    width: 9vw;
+    border-radius: 10px;
+}
+
+@media only screen and (max-width: 380px) {
+    /* For small screened mobile phones: */
+    .grid-container {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 573px auto auto auto auto auto auto auto auto auto;
+        margin: 0px;
+    }
+    #poster { grid-area: 1 / 1 / span 1 / span 2; }
+    #like_dislike{ grid-area: 2 / 1 / span 1 / span 2; }
+    #basic_details{ grid-area: 3 / 1 / span 1 / span 2; }
+    #cast-container { grid-area: 4 / 1 / span 1 / span 5;}
+    #trailer{ grid-area: 5 / 1 / span 1 / span 5; }
+    #Rec_heading { grid-area: 7 / 1 / span 1 / span 2;}
+    #Rec{grid-area: 8 / 1 / span 1 / span 5;}
+    
+    #blank,#bg_img,.navbar { display:none;}
+
+    #basic_details {padding-left: 10px;}
+    #Plot{
+        font-family: 'Roboto', sans-serif;
+        width: 90%;
+        padding-left: 20px;
+        font-size: 20px;
+    }
+    #Rating,#Year_Genre{
+        padding-left: 20px;
+        font-size: 20px;
+    }
+
+    #poster { padding: 0px;}
+    #poster::after {
+        display: block;
+        position: relative;
+        background-image: linear-gradient(to top, rgba(0, 0, 0, 255), rgba(0, 0, 0, 0));
+        margin-top: -150vw;
+        height: 150vw;
+        width: 100%;
+        content: '';
+    }
+    #Poster_img{
+        margin: 0px;
+        position: absolute;
+        top:0%;
+        width:100%;
+        height: 150vw; 
+        border-radius: 0px; 
+    }
+    #buttonSpace{
+        width: 90vw;
+        margin-left: 5vw;
+    }
+    #watch{ width: calc(90vw - 88px);}
+    
+    #Trailer_frame{
+        width: calc(100% - 4vw);
+        height: 68vw;
+        margin-left: 2vw;
+        margin-bottom: 25px;
+        display: block;
+    }
+    .elemHeader{
+        margin-left: 20px;
+        text-align: left;
+    }
+
+    #cast-container { 
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        display: grid;
+        width: calc(100% - 10vw);
+        grid-template-columns: 120px 120px;
+        grid-template-rows: 8em 12em 12em 12em 12em 12em 12em;
+        padding-left: calc(50vw - 135px);
+    }
+    #cast-container > button:hover{
+        background-color: var(--text-color);
+        color: var(--bg-color);
+        border-radius: 15px;
+    }
+    .director { grid-area: 2 / 1 / span 2 / span 2;}
+    #cast1{ grid-area: 4 / 1 / span 1 / span 1; }
+    #cast2{ grid-area: 4 / 2 / span 1 / span 1; }
+    #cast3{ grid-area: 5 / 1 / span 1 / span 1; }
+    #cast4{ grid-area: 5 / 2 / span 1 / span 1; }
+    #cast5{ grid-area: 6 / 1 / span 1 / span 1; }
+    #cast6{ grid-area: 6 / 2 / span 1 / span 1; }
+    #cast7{ grid-area: 7 / 1 / span 1 / span 1; }
+    #cast8{ grid-area: 7 / 2 / span 1 / span 1; }
+    .elemContent{ font-size: 20px;}
+    
+    #Rec_form{
+        display: grid;
+        grid-template-columns: 48vw 48vw;
+        grid-template-rows: 90vw 90vw 90vw 90vw 90vw;
+        margin-left: 1vw;
+        margin-bottom: 2vw;
+    }
+    #Rec0{ grid-area: 1 / 1 / span 1 / span 1;}
+    #Rec1{ grid-area: 1 / 2 / span 1 / span 1;}
+    #Rec2{ grid-area: 2 / 1 / span 1 / span 1;}
+    #Rec3{ grid-area: 2 / 2 / span 1 / span 1;}
+    #Rec4{ grid-area: 3 / 1 / span 1 / span 1;}
+    #Rec5{ grid-area: 3 / 2 / span 1 / span 1;}
+    #Rec6{ grid-area: 4 / 1 / span 1 / span 1;}
+    #Rec7{ grid-area: 4 / 2 / span 1 / span 1;}
+    #Rec8{ grid-area: 5 / 1 / span 1 / span 1;}
+    #Rec9{ grid-area: 5 / 2 / span 1 / span 1;}
+    #Rec_form button{
+        background-color: inherit;
+        text-align: center;
+        color: inherit;
+        border: none;
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        position: relative;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-top: 5px;
+        border-radius: calc(10px + 0.4vw);
+    }
+    #Rec_form button:hover{
+        background-color: var(--text-color);
+        color: var(--bg-color);
+    }
+    #Rec_form button img{
+        position: absolute;
+        top: 2vw;
+        left: 2vw;
+        height: 72vw;
+        width: 42vw;
+        border-radius: 10px;
+    }
+    .movieName{ margin-top: 65vw; }
+    
+}
+@media only screen and (min-width: 380px) and (max-width: 500px) {
+    /* For small screened mobile phones: */
+    .grid-container {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 150vw auto auto auto auto auto auto auto auto auto;
+        margin: 0px;
+    }
+    #poster { grid-area: 1 / 1 / span 1 / span 2; }
+    #like_dislike{ grid-area: 2 / 1 / span 1 / span 2; }
+    #basic_details { grid-area: 3 / 1 / span 1 / span 2; }
+    #cast-container { grid-area: 4 / 1 / span 1 / span 5;}
+    #trailer{ grid-area: 5 / 1 / span 1 / span 5; }
+    #Rec_heading { grid-area: 6 / 1 / span 1 / span 2;}
+    #Rec_form{ grid-area: 7 / 1 / span 1 / span 2;}
+    #blank, #bg_img, .navbar { display: none; }
+    #Plot{
+        padding-left: 20px;
+        font-size: 20px;
+    }
+    #Rating,#Year_Genre{
+        padding-left: 20px;
+        font-size: 20px;
+    }
+    #basic_details { padding-left: 10px; }
+
+    
+    
+    #poster { padding: 0px; }
+
+    #Poster_img{
+        margin: 0px;
+        position: absolute;
+        top:0%;
+        width:100vw;
+        height: 150vw; 
+        border-radius: 0px; 
+    }
+    #buttonSpace{
+        width: 90vw;
+        margin-left: 5vw;
+    }
+    #watch{
+        width: calc(90vw - 88px);
+    }
+   
+    #Trailer_frame{
+        width: 90vw;
+        height: 68vw;
+        margin-left: 3vw;
+        margin-bottom: 25px;
+        display: block;
+    }
+    .elemHeader{
+        margin-left: 20px;
+        text-align: left;
+    }
+    #cast-container { 
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        display: grid;
+        grid-template-columns: 120px 120px 120px;
+        grid-template-rows: 4em 12em 12em 12em 12em;
+        padding: calc(50vw - 180px)
+    }
+    #cast-container > button:hover{
+        background-color: var(--text-color);
+        color: var(--bg-color);
+        border-radius: 15px;
+    }
+    .director {
+        grid-area: 2 / 1 / span 2 / span 2;
+    }
+    #cast1{ grid-area: 2 / 3 / span 1 / span 1; }
+    #cast2{ grid-area: 3 / 3 / span 1 / span 1; }
+    #cast3{ grid-area: 4 / 1 / span 1 / span 1; }
+    #cast4{ grid-area: 4 / 2 / span 1 / span 1; }
+    #cast5{ grid-area: 4 / 3 / span 1 / span 1; }
+    #cast6{ grid-area: 5 / 1 / span 1 / span 1; }
+    #cast7{ grid-area: 5 / 2 / span 1 / span 1; }
+    #cast8{ grid-area: 5 / 3 / span 1 / span 1; }
+    .elemContent{ font-size: 20px;}
+    #Rec_form{
+        display: grid;
+        grid-template-columns: 49vw 49vw;
+        grid-template-rows: 90vw 90vw 90vw 90vw 90vw;
+        margin-left: 1vw;
+        margin-bottom: 2vw;
+    }
+    #Rec0{ grid-area: 1 / 1 / span 1 / span 1;}
+    #Rec1{ grid-area: 1 / 2 / span 1 / span 1;}
+    #Rec2{ grid-area: 2 / 1 / span 1 / span 1;}
+    #Rec3{ grid-area: 2 / 2 / span 1 / span 1;}
+    #Rec4{ grid-area: 3 / 1 / span 1 / span 1;}
+    #Rec5{ grid-area: 3 / 2 / span 1 / span 1;}
+    #Rec6{ grid-area: 4 / 1 / span 1 / span 1;}
+    #Rec7{ grid-area: 4 / 2 / span 1 / span 1;}
+    #Rec8{ grid-area: 5 / 1 / span 1 / span 1;}
+    #Rec9{ grid-area: 5 / 2 / span 1 / span 1;}
+    #Rec_form button{
+        background-color: inherit;
+        text-align: center;
+        color: inherit;
+        border: none;
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        position: relative;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-top: 5px;
+        border-radius: calc(10px + 0.4vw);
+    }
+    #Rec_form button:hover{
+        background-color: var(--text-color);
+        color: var(--bg-color);
+    }
+    #Rec_form button img{
+        position: absolute;
+        top: 2vw;
+        left: 2vw;
+        height: 72vw;
+        width: 45vw;
+        border-radius: 10px;
+    }
+    .movieName{ margin-top: 65vw; }
+    
+}
+@media only screen and (min-width: 500px) and (max-width: 760px) {
+    /* For mobile phones: */
+    .grid-container {
+        display: grid;
+        grid-template-columns: 20% 20% 20% 20% 20%;
+        grid-template-rows: 25em 48vw auto auto auto auto auto auto auto auto;
+        margin: 0px;
+    }
+    #Plot{
+        padding-left: 20px;
+        font-size: 20px;
+        width: 90%;
+    }
+    #Rating,#Year_Genre{
+        padding-left: 20px;
+        font-size: 20px;
+    }
+    #bg_img { 
+        grid-area: 1 / 1 / span 1 / span 5;
+        background-position: right;
+    }
+    #basic_details {
+        grid-area: 2 / 1 / span 2 / span 3;
+        padding-left: 10px;
+    }
+    #poster {
+        grid-area: 2 / 4 / span 1 / span 2;
+        text-align: center;
+    }
+    #like_dislike{
+        grid-area: 3 / 4 / span 1 / span 2;
+    }
+    #trailer {
+        grid-area: 5 / 1 / span 1 / span 5;
+    }
+    #Rec_heading { grid-area: 6 / 1 / span 1 / span 5;}
+    #Rec_form { grid-area: 7 / 1 / span 1 / span 5;}
+
+    #Trailer_frame{
+        width: 90vw;
+        height: 68vw;
+        margin-left: 3vw;
+        margin-bottom: 25px;
+        display: block;
+    }
+    #Poster_img{
+        margin: 0px;
+        width: 36vw;
+        height: 48vw; 
+        position: absolute;
+        top: 50px;
+        left: 0px;
+        margin-left: 1vw;
+        border-radius: 10px;   
+    }
+    #buttonSpace{
+        margin-top: 12vw;
+        margin-left: 1vw;
+        width: 36vw;
+    }
+    #watch{
+        width: calc(36vw - 88px);
+        float: right;
+    }
+    .elemHeader{
+        margin-left: 20px;
+        text-align: left;
+    }
+    #cast-container { 
+        grid-area: 4 / 1 / span 1 / span 5;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        display: grid;
+        grid-template-columns: 120px 120px 120px 120px;
+        grid-template-rows: 4em 12em 12em 12em;
+        padding-left: calc(50vw - 240px);
+    }
+    #cast-container > button:hover{
+        background-color: var(--text-color);
+        color: var(--bg-color);
+        border-radius: 15px;
+    }
+    .director{ grid-area: 2 / 1 / span 2 /span 2;}
+    #cast1{ grid-area: 2 / 3 / span 1 / span 1; }
+    #cast2{ grid-area: 2 / 4 / span 1 / span 1; }
+    #cast3{ grid-area: 3 / 3 / span 1 / span 1; }
+    #cast4{ grid-area: 3 / 4 / span 1 / span 1; }
+    #cast5{ grid-area: 4 / 1 / span 1 / span 1; }
+    #cast6{ grid-area: 4 / 2 / span 1 / span 1; }
+    #cast7{ grid-area: 4 / 3 / span 1 / span 1; }
+    #cast8{ grid-area: 4 / 4 / span 1 / span 1; }
+    .elemContent{ font-size: 20px;}
+    .navbar{display: none;}
+
+    #Rec_form{
+        display: grid;
+        grid-template-columns: 19vw 19vw 19vw 19vw 19vw;
+        grid-template-rows: 40vw 40vw;
+        margin-left: 2.5vw;
+        margin-bottom: 2vw;
+    }
+    #Rec0{ grid-area: 1 / 1 / span 1 / span 1;}
+    #Rec1{ grid-area: 1 / 2 / span 1 / span 1;}
+    #Rec2{ grid-area: 1 / 3 / span 1 / span 1;}
+    #Rec3{ grid-area: 1 / 4 / span 1 / span 1;}
+    #Rec4{ grid-area: 1 / 5 / span 1 / span 1;}
+    #Rec5{ grid-area: 2 / 1 / span 1 / span 1;}
+    #Rec6{ grid-area: 2 / 2 / span 1 / span 1;}
+    #Rec7{ grid-area: 2 / 3 / span 1 / span 1;}
+    #Rec8{ grid-area: 2 / 4 / span 1 / span 1;}
+    #Rec9{ grid-area: 2 / 5 / span 1 / span 1;}
+    #Rec_form button{
+        background-color: inherit;
+        text-align: center;
+        color: inherit;
+        border: none;
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        position: relative;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-top: 5px;
+        border-radius: calc(10px + 0.4vw);
+    }
+    #Rec_form button:hover{
+        background-color: var(--text-color);
+        color: var(--bg-color);
+    }
+    #Rec_form button img{
+        position: absolute;
+        top: 0.5vw;
+        left: 0.5vw;
+        height: 24vw;
+        width: 18vw;
+        border-radius: 10px;
+    }
+    .movieName{ margin-top: 18vw; }
+
+}
+@media only screen and (min-width: 760px) and (max-width: 1000px) {
+    /* For mobile phones: */
+    .grid-container {
+        display: grid;
+        grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+        grid-template-rows: 25em 30vw auto auto auto auto auto auto auto auto;
+        margin: 0px;
+    }
+    #Plot{
+        padding-left: 20px;
+        font-size: 20px;
+        width: 90%;
+    }
+    #Rating,#Year_Genre{
+        padding-left: 20px;
+        font-family: 'Oswald', sans-serif;
+        font-size: 20px;
+    }
+    #bg_img { 
+        grid-area: 1 / 1 / span 1 / span 10;
+        background-position: center;
+    }
+    #basic_details {
+        grid-area: 2 / 4 / span 2 / span 7;
+        padding-left: 10px;
+    }
+    #like_dislike{
+        grid-area: 3 / 1 / span 1 / span 3;
+    }
+    #cast-container { 
+        grid-area: 4 / 1 / span 1 / span 10;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        display: grid;
+        grid-template-columns: 240px 120px 120px 120px 120px;
+        grid-template-rows: 4em 12em 12em;
+        padding:20px;
+        padding-left: calc(50vw - 380px);
+    }
+    #poster {
+        grid-area: 2 / 1 / span 1 / span 3;
+        text-align: center;
+    }
+    #trailer {
+        grid-area: 5 / 1 / span 1 / span 10;
+        text-align: center;
+    }
+    #Rec_heading { grid-area: 6 / 1 / span 1 / span 10;}
+    #Rec_form { grid-area: 7 / 1 / span 1 / span 10;}
+
+
+     .navbar{ display: none;}
+    #Poster_img{
+        margin: 0px;
+        width: 24vw;
+        height: 36vw; 
+        position: absolute;
+        top: 50px;
+        left: 0px;
+        margin-left: 20px;
+        border-radius: 10px;  
+    }
+    #buttonSpace{
+        margin-top: 15vw;
+        width: 24vw;
+    }
+    #watch{
+        width: calc(24vw - 88px);
+        float: right;
+    }
+    .elemHeader{
+        margin-left: 20px;
+        text-align: left;
+    }
+    .elemContent{ font-size: 20px;}
+
+    #Rec_form{
+        display: grid;
+        grid-template-columns: 19vw 19vw 19vw 19vw 19vw;
+        grid-template-rows: 40vw 40vw;
+        margin-left: 2.5vw;
+        margin-bottom: 2vw;
+    }
+    #Rec0{ grid-area: 1 / 1 / span 1 / span 1;}
+    #Rec1{ grid-area: 1 / 2 / span 1 / span 1;}
+    #Rec2{ grid-area: 1 / 3 / span 1 / span 1;}
+    #Rec3{ grid-area: 1 / 4 / span 1 / span 1;}
+    #Rec4{ grid-area: 1 / 5 / span 1 / span 1;}
+    #Rec5{ grid-area: 2 / 1 / span 1 / span 1;}
+    #Rec6{ grid-area: 2 / 2 / span 1 / span 1;}
+    #Rec7{ grid-area: 2 / 3 / span 1 / span 1;}
+    #Rec8{ grid-area: 2 / 4 / span 1 / span 1;}
+    #Rec9{ grid-area: 2 / 5 / span 1 / span 1;}
+    #Rec_form button{
+        background-color: inherit;
+        text-align: center;
+        color: inherit;
+        border: none;
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        position: relative;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-top: 5px;
+        border-radius: calc(10px + 0.4vw);
+    }
+    #Rec_form button:hover{
+        background-color: var(--text-color);
+        color: var(--bg-color);
+    }
+    #Rec_form button img{
+        position: absolute;
+        top: 0.5vw;
+        left: 0.5vw;
+        height: 24vw;
+        width: 18vw;
+        border-radius: 10px;
+    }
+    .movieName{ margin-top: 18vw; }
+
+}
+@media only screen and (min-width: 1000px) and (max-width:1240px) {
+    /*Tablet*/
+    .grid-container {
+        display: grid;
+        grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+        grid-template-rows: 573px auto auto auto auto auto auto auto auto auto;
+        margin: 0px;
+    }
+
+    #Rec_form{
+        display: grid;
+        grid-template-columns: 19vw 19vw 19vw 19vw 19vw;
+        grid-template-rows: 30vw 30vw;
+        margin-left: 2.5vw;
+        margin-bottom: 2vw;
+    }
+    #Rec0{ grid-area: 1 / 1 / span 1 / span 1;}
+    #Rec1{ grid-area: 1 / 2 / span 1 / span 1;}
+    #Rec2{ grid-area: 1 / 3 / span 1 / span 1;}
+    #Rec3{ grid-area: 1 / 4 / span 1 / span 1;}
+    #Rec4{ grid-area: 1 / 5 / span 1 / span 1;}
+    #Rec5{ grid-area: 2 / 1 / span 1 / span 1;}
+    #Rec6{ grid-area: 2 / 2 / span 1 / span 1;}
+    #Rec7{ grid-area: 2 / 3 / span 1 / span 1;}
+    #Rec8{ grid-area: 2 / 4 / span 1 / span 1;}
+    #Rec9{ grid-area: 2 / 5 / span 1 / span 1;}
+    #Rec_form button{
+        background-color: inherit;
+        text-align: center;
+        vertical-align: bottom;
+        color: var(--text-color);
+        border: none;
+        font-family: 'Roboto', sans-serif;
+        font-size: 20px;
+        position: relative;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-top: 5px;
+        border-radius: calc(10px + 0.4vw);
+    }
+    #Rec_form button:hover{
+        background-color: var(--text-color);
+        color: #000000;
+    }
+    #Rec_form button img{
+        position: absolute;
+        top: 0.5vw;
+        left: 0.5vw;
+        height: 24vw;
+        width: 18vw;
+        border-radius: 10px;
+    }
+    .movieName{ margin-top: 22vw; }
+    #Rec_heading_1,#Rec_heading_2,#Rec_heading_3, #Rec_heading_4 { 
+        font-size: 40px;
+    }
+}

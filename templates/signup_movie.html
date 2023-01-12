@@ -1,0 +1,184 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoviReco</title>
+    <script src="https://kit.fontawesome.com/f79dc7947f.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'movie/style_signup.css' %}">
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'movie/favicon.ico' %}"/> 
+
+</head>
+
+<body>
+    <div id = "logo"><i class="fas fa-film"></i>   MovieReco</div>
+    <div class="bodycontent">
+        <main class="form-signin">
+            <!-- {{ invalid }} -->
+        <form id="sign" formaction="{% url 'login' %}">
+            <h1>Sign In</h1>
+
+            <div class = "data_input">
+                <i class="far fa-envelope"></i>
+                <input type="email" name="emailid" id="inputEmail" placeholder="Email" required>
+            </div>
+            <br>
+                <div class = "data_input">
+                    <i class="fas fa-key"></i>
+                    <input type="password" name="passwd" id="inputPassword" class="form-control" placeholder="Password" required>
+                </div>
+
+                <br>
+                <div id="showpassword">
+                    <input type="checkbox" onclick="Toggle()">
+                    Show Password
+                </div>
+            <br>
+            <br>
+            <input type="submit" value="Submit" class="submit" id="submit-button" type="submit"  formaction="{% url 'login' %}">
+            <br>
+            <p style="color:whitesmoke">{{ invalid }}</p>
+        </form>
+        <!--Model-->
+        <p>No account? No worries.<button id="signup">Sign up!</button></p>
+        <!--Model Content-->
+        <div id = "mymodal" class="modal" style='color: #000000;'>
+            <div id = "container">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h1 id="h-1">Sign Up</h1>
+                    <form formaction="{% url 'signup' %}">
+                        <hr style="width:100%;text-align:center;margin-left:0">
+                        <h2>Login Details</h2>
+                        <label>Email</label>
+                        <input type = "text" id = "Email" name = "Email" placeholder = "example@xyz.com" required ><br>
+                        <label>Password</label>
+                        <input type = "password" id = "Password" name = "Password" required><br>
+                        <hr>
+                        <h2>Personal Details</h2>
+                        <label>Name</label>
+                        <input type = "text" id = "Name" name = "Name" required><br>
+                        <label>Mobile</label>
+                        <input type = "text" id = "phone" name = "phone" multiple required><br>
+                        <hr>
+                        <h2>Any five movies you like: </h2>
+                        <!--
+                            <input type = "text" id = "movie1" name = "movie1" required><br>
+                        -->
+                        <div id = search1>
+                            <div id = input_box1>
+                                <label>Movie 1</label>
+                                <input id="searchBox1" type="text" name = "movie1" required placeholder="Enter movie name">
+                            </div>
+                            <div id="result1"></div>
+                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+                            <script type="text/javascript" src="{% static 'movie/JS/suggestions1.js' %}"></script>
+                        </div>
+                        
+                        <div id = search2>
+                            <div id = input_box2>
+                                <label>Movie 2</label>
+                                <input id="searchBox2" type="text" name = "movie2" required placeholder="Enter movie name">
+                            </div>
+                            <div id="result2"></div>
+                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+                            <script type="text/javascript" src="{% static 'movie/JS/suggestions2.js' %}"></script>
+                        </div>
+
+                        <div class = search3>
+                            <div class = input_box>
+                                <label>Movie 3</label>
+                                <input id="searchBox3" type="text" name = "movie3" required placeholder="Enter movie name">
+                            </div>
+                            <div id="result3"></div>
+                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+                            <script type="text/javascript" src="{% static 'movie/JS/suggestions3.js' %}"></script>
+                        </div>
+
+                        <div class = search>
+                            <div class = input_box>
+                                <label>Movie 4</label>
+                                <input id="searchBox4" type="text" name = "movie4" required placeholder="Enter movie name">
+                            </div>
+                            <div id="result4"></div>
+                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+                            <script type="text/javascript" src="{% static 'movie/JS/suggestions4.js' %}"></script>
+                        </div>
+
+                        <div class = search>
+                            <div class = input_box>
+                                <label>Movie 5</label>
+                                <input id="searchBox5" type="text" name = "movie5" required placeholder="Enter movie name">
+                            </div>
+                            <div id="result5"></div>
+                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+                            <script type="text/javascript" src="{% static 'movie/JS/suggestions5.js' %}"></script>
+                        </div>
+                        <!--
+                            <label>Movie 2</label>
+                        <input type = "text" id = "movie2" name = "movie2" required><br>
+                        <label>Movie 3</label>
+                        <input type = "text" id = "movie3" name = "movie3" required ><br>
+                        <label>Movie 4</label>
+                        <input type = "text" id = "movie4" name = "movie4" required><br>
+                        <label>Movie 5</label>
+                        <input type = "text" id = "movie5" name = "movie5" required ><br>
+                        -->
+                        
+                        <h2>Genres you like</h2>
+                        <label>Genre 1</label>
+                        <input type = "text" id = "genre1" name = "genre1" required><br>
+                        
+                        <label>Genre 2</label>
+                        <input type = "text" id = "genre2" name = "genre2" required><br>
+                        <label>Genre 3</label>
+                        <input type = "text" id = "genre3" name = "genre3" required ><br>
+                        <!--<label style = "padding-right:15%;font-family:'Lato',sans-serif;">Gender</label>
+                        <input type="radio" id="male" name="gender" value="male">
+                        <label for="male" style = "all:initial;padding-top:20px;padding-right:20%;font-family:'Lato',sans-serif;">Male</label>
+                        <input type="radio" id="female" name="gender" value="female" style='margin-top:10px'>
+                        <label for="female" style = "all:initial;padding-top:20px;padding-right:20%;font-family:'Lato',sans-serif;">Female</label>
+                        -->
+                        <hr>
+                        <br><br>
+                       <input type="submit" value="Sign Up" formaction="{% url 'signup' %}">
+                    </form>
+                </div>
+            </div>
+        </div>
+        </form>
+    </main>
+    <script>
+
+        function Toggle() {
+            var temp = document.getElementById("inputPassword");
+            if (temp.type === "password") {
+                temp.type = "text";
+            }
+            else {
+                temp.type = "password";
+            }
+        }
+
+        var modal = document.getElementById("mymodal");
+        var btn = document.getElementById("signup");
+        var span = document.getElementsByClassName("close")[0];
+        btn.onclick = function() {
+            modal.style.display="block";
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if(event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</div>
+</body>
+</html>

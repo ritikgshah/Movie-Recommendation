@@ -1,0 +1,167 @@
+<!--
+    TODO:
+        Censor Board rating
+        Movie Length
+        Review
+-->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{movie}} | MoviReco</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/f79dc7947f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'movie/style.css' %}"> 
+</head>
+<body onresize="Gradient()">
+    
+    <img id = "bg_image" src = {{ImageBG}}></img>
+    <div class="navbar">
+        <div id = "logo"><i class="fas fa-film"></i>  MoviReco</div>
+        <a href="{% url "HomePage" %}">Home</a>
+        <div class="dropdown">
+            <button class="dropbtn">Account</button>
+            <div class="dropdown-content">
+                <a href="{% url "Setting" %}">Settings</a>
+                <a href="">Sign Out</a>
+            </div>
+        </div>
+        <div id = "search" class="search-box view_nav">
+            <div id = "input_box">
+                <button class="btn-search"><i class="fas fa-search"></i></button>
+                <input type="text" id="searchBox" placeholder="Enter movie or actor name" class="input-search" placeholder="Enter movie or actor name">              
+            </div>
+        <!--
+            <div id = search>
+            <div id = input_box>
+                <i class="fas fa-search"></i>
+                <input id="searchBox" type="text" placeholder="Enter movie or actor name">
+            </div>
+        -->
+            <form  action="{% url "recommendations" %}" id="result"></form>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+            <script type="text/javascript" src="{% static 'movie/JS/searcheng.js' %}"></script>
+        </div>
+    </div>
+    <div class="grid-container">
+        <div id = "blank"></div>
+        <div id="basic_details">
+            <h1 id = "Movie_Name">{{ movie }}</h1>
+            <p id = "Year_Rating">{{ year }} | RATING | {{ Runtime }}</p>
+            <p id = "Genre"></p>
+            <p id = "Plot" onload="setSize()">{{ plot }}</p>
+            <button id = "resize-bio" onclick="resize()">ABC</button>
+            <p id = "Rating">IMDb {{ Ratings }}/10</p>
+        </div>
+        <div id="bg_img">
+        </div>
+        <div id = "overflow"></div>
+        <div id="poster">
+            <img id = "Poster_img" src ={{poster}} >
+        </div>
+        <div id="like_dislike">
+            <div id = "like_dislike_val" style="display: hidden;"></div>
+            <div id="buttonSpace">
+                <form action="{% url 'ratings2' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="movie" value="{{ movie }}">
+                <input id = "review" type="submit" id="likebutton" name="LLike" value="Review" formaction="{% url 'ratings2' %}">
+                </form>
+                <a id="watch" href = {{watch}}>Watch</a>
+            </div>
+        </div>
+        <div id="cast-container"></div>
+        <div id="trailer">
+            <h1 class = elemHeader>Trailer</h1>
+            <iframe id= "Trailer_frame" src={{trailer}} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div id="Rec_heading">
+            <h1 class = elemHeader>More Like This</h1>
+        </div>  
+        <div id = "Rec"></div>
+        <form action="{% url 'ratings2' %}">
+            {% csrf_token %}
+            <input type="hidden" name="movie" value="{{ movie }}">
+        <input type="submit" id="likebutton" name="LLike" value="review" formaction="{% url 'ratings2' %}">
+        </form>
+    </div> 
+</body>
+<script type="text/javascript" src="{% static 'movie/JS/set_color.js' %}"></script>
+<script>
+
+    var movies1 = {{ movies1|safe|default:"[]" }};
+
+    text1 = '<form id = "Rec_form" action="{% url "recommendations2" %}">';
+      for (let i = 0; i < movies1.length; i++) {
+        text1 += '<button id = "Rec'+i+'" name = "movie" type = "submit" value ="'+movies1[i][0]+'">'+'<img src = "'+movies1[i][1]+'"><br><div class="movieName">'+movies1[i][0]+'</div></button>';
+    }
+    text1 +="</form>";
+    document.getElementById("Rec").innerHTML = text1;
+
+    const cast = {{ cast|safe|default:"[]" }};
+
+   const genre = {{ genre|safe|default:"[]" }};
+    text = '';
+    for(let i = 0; i<genre.length; i++){
+        text += genre[i] + " | ";
+    }
+    text = text.substr(0,text.length-3);
+    document.getElementById('Genre').innerHTML = text;
+
+    text = '<form action="{% url "People" %}"><div id="cast_heading">Director & Top Cast</div>'
+    text += '<button id = "director" class="director" name = "director" type = "submit" value ="'+cast[0][0]+'" formaction = "{% url "Director" %}"><img src = "'+cast[0][1]+'"><div class="directorName">'+cast[0][0]+'<div></button>';
+    for(let i = 1; i<cast.length; i++){
+      text += '<button class="cast" name = "name" type = "submit" id="cast'+i+'" value ="'+cast[i][0]+'"><img src = "'+cast[i][1]+'"><div class="castName">'+cast[i][0]+'<div></button>';
+    }
+    text+="</form>";
+    document.getElementById('cast-container').innerHTML = text;
+
+    var img_height = document.getElementById("Poster_img").height;
+    name_div = document.querySelector("#Movie_Name");
+    name_height = name_div.offsetHeight;
+    
+    var bio_height = img_height-300;
+    bio_height-=bio_height%20;
+    if (bio_height<60){
+        bio_height = 60;
+    }
+
+    document.getElementById("Plot").setAttribute("style","height:"+ bio_height+ "px");
+    document.getElementById("resize-bio").innerHTML = "Read more";
+
+    function setSize(){
+        var img_height = document.getElementById("Poster_img").height;
+        name_div = document.querySelector("#Movie_Name");
+        name_height = name_div.offsetHeight;
+        console.log(img_height);
+        console.log(name_height)
+        var bio_height = img_height - 300;
+        bio_height-=bio_height%20;
+        if (bio_height<60){
+        bio_height = 60;
+    }
+        document.getElementById("Plot").setAttribute("style","height:"+ bio_height+ "px");
+        document.getElementById("resize-bio").innerHTML = "Read more";
+    }
+    
+
+    function resize(){
+        if (document.getElementById("resize-bio").innerHTML == "Read more"){
+            document.getElementById("Plot").setAttribute("style","height:auto");
+            document.getElementById("resize-bio").innerHTML = "Read less";
+        }
+        else{
+            document.getElementById("Plot").setAttribute("style","height:"+ bio_height+ "px");
+            document.getElementById("resize-bio").innerHTML = "Read more";
+        }
+    }
+
+
+
+  </script>
+</html>

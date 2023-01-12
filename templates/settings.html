@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings | MoviReco</title>
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'movie/favicon.ico' %}"/> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/f79dc7947f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'movie/style_settings.css' %}">
+</head>
+<body>
+    <div class="navbar">
+        <div id = "logo"><i class="fas fa-film"></i>  MoviReco</div>
+        <a href="{% url "HomePage" %}">Home</a>
+        <div class="dropdown">
+            <button class="dropbtn">Account</button>
+            <div class="dropdown-content">
+                <a href="{% url "Setting" %}">Settings</a>
+                <a href="">Sign Out</a>
+            </div>
+        </div>
+        <div id = search>
+            <div id = input_box>
+                <i class="fas fa-search"></i>
+                <input id="searchBox" type="text" placeholder="Enter movie or actor name">
+            </div>
+            <form  action="{% url "recommendations" %}" id="result"></form>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+            <script type="text/javascript" src="{% static 'movie/JS/searcheng.js' %}"></script>
+        </div>
+    </div>
+<div id = "blank">
+    <!--
+<div id = "heading">Account Settings</div>
+    -->
+    
+</div>
+<div id = "heading">Account Settings</div>
+
+<div id = "grid-container">
+    <div id = "Username">
+        <div class = "icon"><i class="fas fa-user"></i></div>
+        <div class = "label">Username</div>
+        <div class = "value">Username</div>
+    </div>
+    <div id = "Email">
+        <div class = "icon3"><i class="far fa-envelope"></i></div>
+        <div class = "label">Email</div>
+        <div class = "value">Email@address.com</div>
+    </div>
+    <div id = "Password">
+        <div class = "icon"><i class="fas fa-unlock-alt"></i></div>
+        <div class = "label">Password</div>
+        <div class = "value" id = "PasswordVal">Email@address.com</div>
+        
+        <form action = '{% url "passChange" %}'>
+            <!--{ % csrf_token % }
+            <input type = "hidden" name = "email" value = "email">-->
+            <input type = "submit" name = "changePass" id = "Change_pass" value = "Change">
+        </form>
+        <button id = "View" onclick="ViewPass()">View</button>
+    </div>
+    <div id = "Btn">
+        <form id = "Buttons" action="{% url 'History' %}">
+            {% csrf_token %}
+        
+            <button type="submit" id="History" name="History" value="History">
+                <div class = "icon2"><i class="fas fa-history"></i></div>
+                <div class = "label">Watch History</div>
+            </button>
+            <button type="submit" id="Reviewed" name="Reviewed" value="Reviewed" formaction="{% url 'Rating' %}">
+                <div class = "icon2"><i class="far fa-comment-alt"></i></div>
+                <div class = "label">Reviewed</div>
+            </button>
+        </form>
+    </div>
+</div>
+
+
+
+</body>
+<!--
+<footer>
+    <p style="background-color: #808080;margin: 0px 0px;">Copyright © 2021 MoviReco - All Rights Reserved.</p>
+</footer>
+-->
+
+<script>
+
+    var Password = "123456@abc"
+    var text = ""
+    for(let i = 0;i<Password.length;i++){
+        text+="*"
+    }
+    document.getElementById("PasswordVal").innerHTML = text;
+
+    function ViewPass(){
+        var initial = document.getElementById("PasswordVal").innerHTML;
+        if (initial === text){
+            document.getElementById("PasswordVal").innerHTML = Password;
+        }
+        else{
+            document.getElementById("PasswordVal").innerHTML = text;
+        }
+    }
+</script>
+</html>

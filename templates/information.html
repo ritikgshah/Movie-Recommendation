@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ movie }}</title>
+</head>
+<body>
+<form  action="{% url "recommendations" %}" id="form" role="search">
+  <input type="search" id="query" name="q"
+   placeholder="Search Movie..."
+   aria-label="Search through site content">
+  <button>Search</button>
+</form>
+<br>
+<img src={{ Image }} class="score-img" width="350" height="350" alt ="{{ movie }} poster not avaliable">
+<h1>{{ movie }}</h1>
+<h5>( {{ year }} )</h5>
+<p><b><u>Plot</u></b></p>
+<p>{{ plot }}</p>
+<p><b><u>Genre</u></b></p>
+<section id="genre"></section>
+<p><b><u>Director</u></b></p>
+<p>{{ Director }}</p>
+<p><b><u>Cast</u></b></p>
+<section id="cast"></section>
+<p><b><u>Rating</u></b></p>
+<p>{{ Ratings }}/10</p>
+<br>
+<form action="{% url 'ratings' %}">
+    {% csrf_token %}
+    <input type="hidden" name="q" value="{{ movie }}">
+<input type="submit" id="likebutton" name="LLike" value="Review" formaction="{% url 'ratings2' %}">
+</form>
+</div>
+<hr>
+<p><b><u>Recommended Movies Based on Rating</u></b></p>
+<section id="movies1"></section>
+<a href="{% url "HomePage" %}">Go to home page</a>
+</body>
+<script>
+
+  var genre = {{ genre|safe|default:"[]" }};
+    var text3 = "<p>";
+    var i;
+      for (i = 0; i < genre.length; i++) {
+
+          text3 += genre[i]+', ';
+
+    }
+    text3 = text3.substr(0,text3.length - 2)
+    text3 += '<p>'
+  document.getElementById("genre").innerHTML = text3;
+
+</script>
+<script>
+   function like() {
+  if(document.getElementById('likebutton').style.backgroundColor == "cornflowerblue") {
+    document.getElementById('likebutton').style.backgroundColor= "lightslategrey";
+    document.getElementById("likebutton").value="0";
+  } else {
+    document.getElementById('likebutton').style.backgroundColor = "cornflowerblue";
+    document.getElementById("likebutton").value="1";
+  }
+  document.getElementById('dislikebutton').style.backgroundColorr = "lightslategrey";
+  document.getElementById("dislikebutton").value="0";
+}
+
+function dislike() {
+  if (document.getElementById('dislikebutton').style.backgroundColor == "cornflowerblue") {
+    document.getElementById('dislikebutton').style.backgroundColor = "lightslategrey";
+    document.getElementById("dislikebutton").value="0";
+  } else {
+    document.getElementById('dislikebutton').style.backgroundColor = "cornflowerblue";
+    document.getElementById("dislikebutton").value="1";
+  }
+  document.getElementById('likebutton').style.backgroundColor = "lightslategrey";
+  document.getElementById("likebutton").value="0";
+}
+
+</script>
+<script>
+
+    var movies1 = {{ movies1|safe|default:"[]" }};
+
+    var text1 = "";
+
+    text1 += '<form action="{% url "recommendations2" %}">';
+
+    var i;
+
+      for (i = 0; i < movies1.length; i++) {
+
+          text1 += '<button name = "movie" type = "submit" value ="'+movies1[i][0]+'">'+'<img src = "'+movies1[i][1]+'"width="100" height="150" alt ="'+movies1[i][0]+'"><br>'+movies1[i][0]+'</button>';
+
+    }
+
+    text1 +="</form>";
+
+    document.getElementById("movies1").innerHTML = text1;
+
+</script>
+<script>
+
+    var cast = {{ cast|safe|default:"[]" }};
+
+    var text4 = "";
+
+    text4 += '<form action="{% url "People" %}">';
+
+    var i;
+
+      for (i = 0; i < cast.length; i++) {
+
+          text4 += '<button name = "name" type = "submit" value ="'+cast[i]+'">'+cast[i]+'</button>';
+
+    }
+
+    text4 +="</form>";
+
+    document.getElementById("cast").innerHTML = text4;
+
+</script>
+</html>

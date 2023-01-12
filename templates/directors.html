@@ -1,0 +1,182 @@
+<!--
+TODO:
+    Birth Name
+    Nickname
+    Known For
+    Year of movies
+
+-->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{name}} | MoviReco</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/f79dc7947f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'movie/style_actor.css' %}"> 
+</head>
+<body>
+    <div class="navbar">
+    <div id = "logo"><i class="fas fa-film"></i>  MoviReco</div>
+    <a href="{% url "HomePage" %}">Home</a>
+    <div class="dropdown">
+        <button class="dropbtn">Account</button>
+        <div class="dropdown-content">
+            <a href="{% url "Setting" %}">Settings</a>
+            <a href="">Sign Out</a>
+        </div>
+    </div>
+    <div id = search>
+        <div id = input_box>
+            <i class="fas fa-search"></i>
+            <input id="searchBox" type="text" placeholder="Enter movie or actor name">
+        </div>
+        <form  action="{% url "recommendations" %}" id="result"></form>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script type="text/javascript" src="{% static 'movie/JS/searcheng.js' %}"></script>
+    </div>
+</div>
+<div class="grid-container">
+    <div id = "blank"></div>
+    <div id = img>
+        <img id = "image" src={{ Image }}>
+    </div>
+        <div id = "Name">{{ name }}</div>
+        <div id = "Bio" onload="setSize()">
+            <p>{{ History }}</p>
+        </div>
+        <button id = "resize-bio" onclick="resize()">ABC</button>
+
+    <div id = "side">
+        <div id = "facts">
+            <div id = "Facts_Header">Quick Facts</div>
+            <div id = "Born_label">Born</div>
+            <div id = "Born">{{ Dob }} in {{ Place }}</div>
+            <div id = "Birth_Name_label">Birth Name</div>
+            <div id = "Birth_Name">{{ birthName }}</div>
+            <div id = "Nickname_label">Nicknames</div>
+            <div id = "Nickname">None</div>
+        </div>
+        <div id = Known_For></div>
+    </div>
+    <div id="movies_header">Movies</div>
+    <div id="movies"></div>
+
+    <!--
+        <img src={{ Image }} class="score-img" width="350" height="350" alt="{{ name }} photo not available">
+        <h3>{{ name }}</h3>
+        <p><b><u>Date of Birth</u></b></p>
+        <p>{{ Dob }}</p>
+        <p><b><u>Place of Birth</u></b></p>
+        <p>{{ Place }}</p>
+        <p><b><u>Biblography</u></b></p>
+        <p>{{ History }}</p>
+        <p><b><u>Movie list</u></b></p>
+        <section id="movies"></section>
+        <a href="{% url "HomePage" %}">Go to home page</a>
+
+    -->
+
+</body>
+<script>
+    var img_height = document.getElementById("image").height;
+        name_div = document.querySelector("#Name");
+        name_height = name_div.offsetHeight;
+        
+        var bio_height = img_height - name_height - 60;
+        bio_height-=bio_height%20;
+        if (bio_height<80){
+            bio_height = 80;
+        }
+    
+        document.getElementById("Bio").setAttribute("style","height:"+ bio_height+ "px");
+        document.getElementById("resize-bio").innerHTML = "Read more";
+    
+        function setSize(){
+            var img_height = document.getElementById("image").height;
+            name_div = document.querySelector("#Name");
+            name_height = name_div.offsetHeight;
+            
+            var bio_height = img_height - name_height - 40;
+            bio_height-=bio_height%20;
+            if (bio_height<80){
+            bio_height = 80;
+        }
+            document.getElementById("Bio").setAttribute("style","height:"+ bio_height+ "px");
+            document.getElementById("resize-bio").innerHTML = "Read more";
+        }
+        
+    
+        function resize(){
+            if (document.getElementById("resize-bio").innerHTML == "Read more"){
+                document.getElementById("Bio").setAttribute("style","height:auto");
+                document.getElementById("resize-bio").innerHTML = "Read less";
+            }
+            else{
+                document.getElementById("Bio").setAttribute("style","height:"+ bio_height+ "px");
+                document.getElementById("resize-bio").innerHTML = "Read more";
+            }
+        }
+
+    var movies = {{ movies|safe|default:"[]" }};
+
+    var movie_list = '<form action="{% url "recommendations2" %}">';
+    
+    for (let i=0; i < movies.length; i++) {
+        rating = (Math.round(movies[i][1] * 100) / 100).toFixed(1);
+        movie_list += '<button name = "movie" type = "submit" value ="'+movies[i][0]+'">';
+        movie_list += '<div id="movies_name">'+movies[i][0]+'</div>';
+        movie_list += '<div id="movies_rating_year">Year:   '/*+movies[i][2]*/+'<br>Rating:&nbsp;'+rating+'&nbsp;/10</div>';
+        movie_list += '</button>';
+    }
+    movie_list +="</form>";
+    document.getElementById("movies").innerHTML = movie_list;
+
+    var known_for = {{ Known_For|safe|default:"[]" }};
+    var known_for_code = '<form action="{% url "recommendations2" %}"><div id = "KnownForHeader">Known For</div>';
+    
+    for (let i=0; i < known_for.length; i++) {
+        
+        known_for_code += '<button name = "movie" type = "submit" id= "Known'+i+'" value ="'+known_for[i][0]+'">'+'<img id= "KnownImg'+i+'" src = "'+ known_for[i][1] +'"><br>'+known_for[i][0]+'</button>';
+    }
+    known_for_code +="</form>";
+    document.getElementById("Known_For").innerHTML = known_for_code;
+
+    var nicknames = {{ nickname|safe|default:"[]" }};
+    var nicknametext = "";
+    for(let i=0;i < nicknames.length; i++){
+        nicknametext += nicknames[i] + " ";
+    }
+
+    document.getElementById("Nickname").innerHTML = nicknametext;
+        
+    /*
+    var text1 = "";
+
+    text1 += '<form action="{% url "recommendations2" %}">';
+
+    text1+='<table>';
+    text1+= '<tr>';
+    text1+= '<th> Sr.No</th>';
+    text1+= '<th>Movie Name</th>';
+    text1+= '<th>IMDb Rating</th>';
+    text1+='</tr>';
+
+      for (let i = 0; i < movies1.length; i++) {
+          text1 += '<td><button name = "movie" type = "submit" value ="'+movies1[i][0]+'">'+movies1[i][0]+'</button></td>';
+          text1+='<td><p>'+movies1[i][1]+'</p></td>';
+          text1+='</tr>';
+    }
+    text1+="</table>";
+    text1 +="</form>";
+
+    document.getElementById("movies").innerHTML = text1;*/
+
+</script>
+</html>

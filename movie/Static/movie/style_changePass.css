@@ -1,0 +1,320 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&display=swap');
+
+        html,
+        body {
+            height: 80vh;
+            background-color: black;
+        }
+
+        #logo{
+            color: #808080;
+            font-size: 45px;
+            font-family: 'Oswald', sans-serif;
+            padding-top: 15px;
+            padding-left: 30px;
+            float: left;
+            width: 80%;
+            font-weight: bold;
+        }
+
+        .topnav {
+            overflow: hidden;
+            font-family: 'Oswald', sans-serif;
+            border-radius: 10px;
+            float: right;
+            padding-top: 45px;
+        }
+
+        .topnav a {
+            float: left;
+            color: #ffffff;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            border-radius: 10px;
+            margin-right: 5px;
+        }
+
+        .topnav a:hover {
+            background-color: #3C589C;
+            background-color: rgb(90, 90, 90);
+            color: white;
+            border-radius: 10px;
+        }
+
+        .topnav a.active {
+            background-color: #000000;
+            background-color: #3C589C;
+            color: white;
+        }
+
+        .bodycontent {
+            display: flex;
+            position: relative;
+            align-items: center;
+            background-color: transparent;
+            color: #808080;
+            opacity: 1;
+            width: 25%;
+            left: 35%;
+            border-radius: 10px;
+        }
+
+        h1 {
+            position: static;
+            font-size: 50px;
+            color: #808080;
+            font-family: 'Oswald', sans-serif;
+            padding-top: 10px;
+            margin-top: 15px;
+        }
+
+        .form-signin {
+            width: 100%;
+            max-width: 330px;
+            padding: 15px;
+            margin: auto;
+            font-family: 'Oswald', sans-serif;
+        }
+        .data_input{
+            background-color: #808080;
+            border: 1px black solid;
+            color: #000000;
+            font-size: 25px;
+            padding-left: 20px;
+            border-radius: 10px;
+        }
+    
+
+        input[type=email],
+        input[type=password] {
+            font-family: 'Oswald', sans-serif;
+            font-size: 15px;
+            width: 75%;
+            background-color: #808080;
+            border: none;
+            outline: none;
+            border-radius: 10px;
+            padding-bottom: 10px;
+            margin-left: 10px;
+        }
+
+        .modal-content form input[type=email],
+        .modal-content form input[type=password] {
+            margin-bottom: 10px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 15px;
+            width: 75%;
+            border:1px black solid;
+            background-color: #808080;
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+
+        .signup-link {
+            color: black;
+        }
+
+        a:hover {
+            text-decoration: inherit;
+            color: rgb(105, 105, 105);
+        }
+
+        button {
+            width: 40%;
+            height: 40px;
+            background-color: #808080;
+            border-radius: 20px;
+            border-width: 2px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 15px;
+            font-weight: 800;
+            cursor: pointer;
+            border-style: solid;
+        }
+
+        button:hover {
+            background-color: rgb(0, 0, 0);
+            border-color: #808080;
+            color: #808080;
+            cursor: pointer;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #808080;
+            width: 100%;
+        }
+
+
+        .close {
+            color: #000000;
+            float: right;
+            font-size: 50px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: red;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #h-2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        label {
+            font-family: 'Roboto', sans-serif;
+            font-size: 15px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            width: 18%;
+            display: block;
+            float: left;
+            text-align: left;
+            background-color: #808080;
+            color: #000000;
+        }
+
+        #h-1 {
+            font-family: 'Oswald', sans-serif;
+            text-align: center;
+            color: black;
+        }
+
+        input[type=text] {
+            margin-bottom: 10px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 15px;
+            width: 75%;
+            border:1px black solid;
+            background-color: #808080;
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: black;
+        opacity: 1; /* Firefox */
+        }
+
+        :-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color: black;
+        }
+
+        ::-ms-input-placeholder { /* Microsoft Edge */
+        color: black;
+        }
+
+        input [type=radio] {
+            padding: 10px;
+        }
+
+        select {
+            font-family: 'Oswald', sans-serif;
+            font-size: 15px;
+            width: 78%;
+            border-color: gray;
+            border-width: 1px;
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        #container {
+            max-width: 700px;
+            margin: 1% auto;
+            background-color: #808080;
+            padding: 20px;
+            text-align: center;
+            border-radius: 15px;
+        }
+
+        hr {
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border-color: #000000;
+        }
+
+        #button-sign-up{
+            width: 50%;
+            height: 50px;
+            background-color: white;
+            border-radius: 25px;
+            border: 1px #000000 solid;
+            font-family: 'Oswald', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+        
+        input[type = submit] {
+            width: 50%;
+            height: 50px;
+            background-color: #808080;
+            border-radius: 25px;
+            border: 1px black solid;
+            font-family: 'Oswald', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        #button-sign-up:hover{
+            color: #808080;
+            background-color: rgb(0, 0, 0);
+            border: 2px #808080 solid;
+            cursor: pointer;
+        }
+        
+        input[type = submit]:hover {
+            color: #808080;
+            background-color: rgb(0, 0, 0);
+            border: 2px #808080 solid;
+            cursor: pointer;
+        }
+
+        h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        h3{
+            color: red;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        #showpassword {
+
+            display: inline-block;
+        }
+
+        #signup{
+            background-color: rgba(0,0,0,0);
+            border: 0px;
+            color: #808080;
+            font-size: 20px;
+        }
+        #signup:hover{
+            color: white;
+        }

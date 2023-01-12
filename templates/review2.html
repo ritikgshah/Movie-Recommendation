@@ -1,0 +1,104 @@
+{% load static %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald&family=Roboto&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/f79dc7947f.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'movie/style_review.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald&family=Roboto&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <body>
+    <div class="navbar">
+      <a href="{% url 'HomePage' %}">Home</a>
+      <div class="dropdown">
+        <button class="dropbtn">Account</button>
+        <div class="dropdown-content">
+          <a href="{% url 'Setting' %}">Settings</a>
+          <a href="">Sign Out</a>
+        </div>
+      </div>
+      <div id="search" class="search-box view_nav">
+        <div id="input_box">
+          <button class="btn-search"><i class="fas fa-search"></i></button>
+          <input type="text" id="searchBox" placeholder="Enter movie or actor name" class="input-search"
+            placeholder="Enter movie or actor name">
+        </div>
+        <!--
+            <div id = search>
+            <div id = input_box>
+                <i class="fas fa-search"></i>
+                <input id="searchBox" type="text" placeholder="Enter movie or actor name">
+            </div>
+        -->
+        <form action="{% url 'recommendations' %}" id="result"></form>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script type="text/javascript" src="{% static 'movie/JS/searcheng.js' %}"></script>
+      </div>
+    </div>
+    <h2>Rating </h2>
+    <form action="{% url 'ld2' %}">
+      <input type="hidden" name="movie" value="{{ movie }}">
+      <label for="rating2">What would you like to rate this movie?</label>
+      <div class="slidecontainer">
+        <input type="range" min="1" max="10" value="5" class="slider" id="myRange">
+        <p>Value: <span id="demo"></span></p>
+      </div>
+      <!--<select id="rating2" name="rating2" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>-->
+      <br>
+      <br>
+      <input type="text" class="resizedTextbox" name="review2">
+      <input type="submit" class='buttons'>
+    </form>
+    <p>{{ Like }}</p>
+    <form action="{% url 'recommendations2' %}">
+      <input type="hidden" class='buttons' name="movie" value="{{ movie }}">
+      <input type="submit" class='buttons' value="Back">
+    </form>
+    <div id="others"></div>
+  </body>
+  <script>
+    var reviews = {
+      {
+        Reviews | safe |
+          default: "[]"
+      }
+    };
+    var text = "";
+    for (let i = 0; i < reviews.length; i++) {
+      text += '<div class = "review">';
+      text += '<div class = "rating">' + reviews[i][0] + '</div>';
+      text += '<div class = "rev_text">' + reviews[i][1] + '</div>';
+      text += '</div>'
+    }
+    document.getElementById("others").innerHTML = text;
+    var slider = document.getElementById("myRange");
+    var output = document.getElementById("demo");
+    output.innerHTML = slider.value;
+    slider.oninput = function () {
+        output.innerHTML = this.value;
+    }
+  </script>
+
+</html>

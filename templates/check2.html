@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="{% url 'checkratings2' %}">
+    <input type="hidden" name="movie" value="{{ movie }}">
+    <p>You have already reviewed this {{ movie }}, do you wanna change your review</p>
+    <input type="submit" name="Yes" id="Yes" value="Yes">
+    </form>
+<form action="{% url 'recommendations2' %}">
+    <input type="hidden" name="movie" value="{{ movie }}">
+    <input type="submit" name="No" id="No" value="No">
+</form>
+<hr>
+    <h2><u><b>Your Review</b></u></h2>
+<br>
+    <p><u><b>Rating</b></u><br>{{ Rating }}/10</p>
+    <p><u><b>Review</b></u><br>{{ Review }}</p>
+<hr>
+</body>
+</html>

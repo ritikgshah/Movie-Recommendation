@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/f79dc7947f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'movie/style_home.css' %}"> 
+</head>
+<body>
+    <div class="navbar">
+        <a href="{% url 'HomePage' %}">Home</a>
+        <div class="dropdown">
+            <button class="dropbtn">Account</button>
+            <div class="dropdown-content">
+                <a href="{% url 'Setting' %}">Settings</a>
+                <a href="">Sign Out</a>
+            </div>
+        </div>
+        <div id = "search" class="search-box view_nav">
+            <div id = "input_box">
+                <button class="btn-search"><i class="fas fa-search"></i></button>
+                <input type="text" id="searchBox" placeholder="Enter movie or actor name" class="input-search" placeholder="Enter movie or actor name">              
+            </div>
+        <!--
+            <div id = search>
+            <div id = input_box>
+                <i class="fas fa-search"></i>
+                <input id="searchBox" type="text" placeholder="Enter movie or actor name">
+            </div>
+        -->
+            <form  action="{% url 'recommendations' %}" id="result"></form>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+            <script type="text/javascript" src="{% static 'movie/JS/searcheng.js' %}"></script>
+        </div>
+    </div>
+    <div class="grid-container">
+        
+        <div id = "HomeImg">
+            <div id = "Text">
+                    <p id= "WebsiteName"><i class="fas fa-film"></i>  MoviReco</p>
+                    <p id = "WebsiteDesc">Personalized movie recommendations for you</p>
+            </div>
+        </div>
+        <div id = "Rec_heading_1">Recommended For You</div>
+        <section id="movies1"></section>
+        <div id = "Rec_heading_2">Recommended in {{genre1}}</div>
+        <section id="movies2"></section>
+        <div id = "Rec_heading_3">Recommended in {{genre2}}</div>
+        <section id="movies3"></section>
+        <div id = "Rec_heading_4">Recommended in {{genre3}}</div>
+        <section id="movies4"></section>
+        <div id = "blank"></div>
+    </div>
+</body>
+<script>
+
+    var movies1 = {{ movies1|safe|default:"[]" }};
+    var text1 = '<form id = "Rec_form" action="{% url "recommendations2" %}">';
+      for (let i = 0; i < movies1.length; i++) {
+        text1 += '<button id = "Rec'+i+'" name = "movie" type = "submit" value ="'+movies1[i][0]+'">'+'<img src = "'+movies1[i][1]+'"><br><div class="movieName">'+movies1[i][0]+'</div></button>';
+    }
+    text1 +="</form>";
+    document.getElementById("movies1").innerHTML = text1;
+
+    var movies1 = {{ movies2|safe|default:"[]" }};
+    text2 = '<form id = "Rec_form" action="{% url "recommendations2" %}">';
+      for (let i = 0; i < movies1.length; i++) {
+        text2 += '<button id = "Rec'+i+'" name = "movie" type = "submit" value ="'+movies1[i][0]+'">'+'<img src = "'+movies1[i][1]+'"><br><div class="movieName">'+movies1[i][0]+'</div></button>';
+    }
+    text2 +="</form>";
+    document.getElementById("movies2").innerHTML = text2;
+
+    var movies1 = {{ movies3|safe|default:"[]" }};
+    text3 = '<form id = "Rec_form" action="{% url "recommendations2" %}">';
+      for (let i = 0; i < movies1.length; i++) {
+        text3 += '<button id = "Rec'+i+'" name = "movie" type = "submit" value ="'+movies1[i][0]+'">'+'<img src = "'+movies1[i][1]+'"><br><div class="movieName">'+movies1[i][0]+'</div></button>';
+    }
+    text3 +="</form>";
+    document.getElementById("movies3").innerHTML = text3;
+    
+    var movies1 = {{ movies4|safe|default:"[]" }};
+    text4 = '<form id = "Rec_form" action="{% url "recommendations2" %}">';
+      for (let i = 0; i < movies1.length; i++) {
+        text4 += '<button id = "Rec'+i+'" name = "movie" type = "submit" value ="'+movies1[i][0]+'">'+'<img src = "'+movies1[i][1]+'"><br><div class="movieName">'+movies1[i][0]+'</div></button>';
+    }
+    text4 +="</form>";
+    document.getElementById("movies4").innerHTML = text4;
+</script>
+</html>
